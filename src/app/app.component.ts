@@ -1,23 +1,25 @@
-import { Component ,OnInit , ViewChild} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { ExampleComponent } from './example/example.component';
+import { CommonModule, DatePipe } from '@angular/common';
+import { ApiService } from './api.service';
+
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet ,
-    ExampleComponent],
+  standalone: true,
+  imports: [CommonModule, RouterOutlet,DatePipe],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+
+export class AppComponent implements OnInit { 
   title = 'angularstg2';
-  @ViewChild(ExampleComponent) exComp!: ExampleComponent;
+  data: any;
+  currentDate: Date = new Date();
+
+  constructor(private apiService: ApiService) {}
 
   ngOnInit() {
-    if(this.exComp){
-      this.exComp.ngOnInit();
-    }
-   
-    }
-  // ExampleComponent: exComp = new ExampleComponent();
+    this.apiService.getData();
+  }
 }

@@ -1,4 +1,10 @@
 <h1>Welcome to Angular Starter</h1>
 <app-root></app-root>
-<app-example></app-example>
+<div>
+    {{ data | json }}
+ </div>
+ <div>
+    Current Date: {{ currentDate | date:'medium' }}
+ </div>
+ 
 <router-outlet></router-outlet>
